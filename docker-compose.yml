@@ -1,0 +1,18 @@
+services:
+  apk-report-bot:
+    build: .
+    init: true
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      TEMP_DIR: /tmp/apk-telegram-bot
+      HOME: /tmp
+    read_only: true
+    user: "10001:10001"
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=512m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

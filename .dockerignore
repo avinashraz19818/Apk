@@ -1,0 +1,13 @@
+.git
+.venv
+__pycache__
+.ruff_cache
+.env
+*.apk
+*.aab
+zayrop.zip
+app/
+build.gradle
+settings.gradle
+gradle.properties
+tests/
