@@ -1,0 +1,114 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/_coordinator"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+		<LinearLayout
+			android:id="@+id/linear1"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:padding="8dp"
+			android:background="#FFFFFF"
+			android:orientation="vertical"
+			android:layout_weight="1">
+			<TextView
+				android:id="@+id/textview1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:gravity="center_horizontal|center_vertical"
+				android:text="ZAYRO PROTECTION"
+				android:textSize="30sp"
+				android:textStyle="bold"
+				android:textColor="#000000"
+				android:layout_gravity="center_horizontal|center_vertical" />
+			<EditText
+				android:id="@+id/edittext1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:textSize="12sp"
+				android:textColor="#1D212D"
+				android:hint="Select your application (.apk)！"
+				android:textColorHint="#000000"
+				android:imeOptions="actionDone" />
+			<EditText
+				android:id="@+id/edittext2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:text="A4:0D:A8:0A:59:D1:70:CA:A9:50:CF:15:C1:8C:45:4D:47:A3:9B:26:98:9D:8B:64:0E:CD:74:5B:A7:1B:F5:DC"
+				android:textSize="12sp"
+				android:textColor="#1D212D"
+				android:hint="输入您的 SHA-256 签名哈希："
+				android:textColorHint="#1D212D" />
+			<CheckBox
+				android:id="@+id/protectv1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:text="Zayro"
+				android:textSize="14sp"
+				android:textStyle="bold"
+				android:textColor="#1D212D"
+				android:layout_gravity="center_horizontal|center_vertical" />
+			<TextView
+				android:id="@+id/textview2"
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:padding="8dp"
+				android:gravity="center_horizontal|center_vertical"
+				android:text="保护工具"
+				android:textSize="18sp"
+				android:textColor="#FFFFFF"
+				android:layout_gravity="center_horizontal|center_vertical" />
+			<ScrollView
+				android:id="@+id/vscroll1"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_margin="1dp"
+				android:padding="4dp"
+				android:translationY="5.0dp"
+				android:layout_weight="1">
+				<LinearLayout
+					android:id="@+id/linear2"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:padding="8dp"
+					android:orientation="horizontal">
+					<TextView
+						android:id="@+id/textview3log"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_margin="1dp"
+						android:padding="8dp"
+						android:textSize="12sp"
+						android:textColor="#000000" />
+				</LinearLayout>
+			</ScrollView>
+			<TextView
+				android:id="@+id/textview4"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="1dp"
+				android:padding="8dp"
+				android:gravity="center_horizontal|center_vertical"
+				android:text="Developed by \@zayro\nTelegram Channel：https://t.me/nepsxbot\nVersion：2.0"
+				android:textSize="14sp"
+				android:textColor="#1D212D"
+				android:layout_gravity="center_horizontal|center_vertical" />
+		</LinearLayout>
+	</LinearLayout>
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/_fab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:layout_gravity="right|bottom" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

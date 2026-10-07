@@ -1,0 +1,49 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/_coordinator"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/_app_bar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:theme="@style/AppTheme.AppBarOverlay">
+		<androidx.appcompat.widget.Toolbar
+			android:id="@+id/_toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			android:background="?attr/colorPrimary"
+			app:popupTheme="@style/AppTheme.PopupOverlay" />
+	</com.google.android.material.appbar.AppBarLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
+		<ScrollView
+			android:id="@+id/vscroll1"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:padding="4dp">
+			<LinearLayout
+				android:id="@+id/linear1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:orientation="vertical">
+				<TextView
+					android:id="@+id/textview1"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:gravity="center_vertical"
+					android:text="╔══════════════════════════════════╗ ║ ZAYRO PROTECTION v2.0 ║ Advanced APK Security ╚══════════════════════════════════╝\n\n🛡️ WHAT IS ZAYRO PROTECTION\? ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nZAYRO Protection is an advanced Android APK security and reinforcement system built to add multiple layers of protection to your applications.\n\nIt is designed to make unauthorized analysis, modification, debugging and runtime inspection significantly more difficult.\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 🔐 PROTECTION LAYERS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🔒 CODE &amp; DATA PROTECTION • AES-based secure data encryption • Multi-layer key protection • Sensitive application data protection • Runtime decryption when required • Reduced exposure of protected resources\n\n🧬 DEX SECURITY • Protected DEX processing • Sensitive instruction protection • Runtime restoration mechanism • In-memory loading architecture • Protection against common static analysis\n\n🔍 RUNTIME SECURITY ✓ Application integrity verification ✓ Debugger detection ✓ Root environment checks ✓ Runtime tampering detection ✓ Hooking / instrumentation checks\n\n🖥️ ENVIRONMENT SECURITY • Emulator detection • Virtual environment checks • Suspicious runtime environment detection • Debug / tracing environment monitoring\n\n👥 CLONE &amp; TAMPER PROTECTION • Application clone detection • Package/environment validation • Unauthorized modification detection • Runtime integrity verification\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ⚡ PERFORMANCE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n✓ Optimized protection workflow ✓ Reduced unnecessary memory usage ✓ Efficient protected-data handling ✓ Smart processing of application components ✓ Designed with compatibility in mind\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 🏗️ ARCHITECTURE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nApplication ↓ ZAYRO Protection ↓ Integrity Check ↓ Security Validation ↓ Protected Runtime ↓ Application Launch\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 📦 TECHNOLOGY ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n• Android / Java • Secure Cryptographic Processing • Runtime Integrity Validation • Protected Resource Handling • Multi-Layer Security Architecture\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 📊 VERSION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nZAYRO Protection v2.0\n\n• Enhanced integrity verification • Improved runtime protection • Optimized processing workflow • Better memory efficiency • Additional security validation • Improved compatibility handling\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ⚠️ DISCLAIMER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nZAYRO Protection is intended to provide an additional security layer for applications.\n\nNo APK protection system can guarantee complete protection against every form of reverse engineering, tampering or runtime analysis.\n\nCompatibility may vary depending on the application, Android version, architecture and existing security mechanisms.\n\nZAYRO Protection is intended for applications that you own or have explicit authorization to protect.\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nZAYRO PROTECTION Secure • Reinforce • Protect Made for Your Applications \@zayro_o \n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+					android:textSize="14sp"
+					android:textStyle="bold"
+					android:textColor="#000000" />
+			</LinearLayout>
+		</ScrollView>
+	</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
