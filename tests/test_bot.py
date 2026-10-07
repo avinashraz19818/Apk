@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import asyncio
+import logging
+import sys
 import unittest
 from pathlib import Path
 
-from bot import build_application
+from bot import BotTokenRedactionFilter, build_application
 from config import Settings
 
 
@@ -26,6 +28,26 @@ class BotApplicationTests(unittest.TestCase):
         self.assertIsInstance(
             application.bot_data["analysis_semaphore"], asyncio.Semaphore
         )
+
+    def test_token_filter_redacts_messages_and_tracebacks(self) -> None:
+        token = "123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk"
+        try:
+            raise RuntimeError(f"Telegram rejected {token}")
+        except RuntimeError:
+            record = logging.LogRecord(
+                name="test",
+                level=logging.ERROR,
+                pathname=__file__,
+                lineno=1,
+                msg="Request used token %s",
+                args=(token,),
+                exc_info=sys.exc_info(),
+            )
+
+        BotTokenRedactionFilter().filter(record)
+        rendered = logging.Formatter("%(message)s").format(record)
+        self.assertNotIn(token, rendered)
+        self.assertGreaterEqual(rendered.count("<BOT_TOKEN_REDACTED>"), 2)
 
 
 if __name__ == "__main__":

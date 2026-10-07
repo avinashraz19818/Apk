@@ -5,12 +5,14 @@ from __future__ import annotations
 import asyncio
 import io
 import logging
+import re
 import tempfile
+import traceback
 from pathlib import Path
 
 from telegram import InputFile, Message, Update
 from telegram.constants import ChatType
-from telegram.error import TelegramError
+from telegram.error import InvalidToken, TelegramError
 from telegram.ext import (
     Application,
     ApplicationBuilder,
@@ -24,6 +26,33 @@ from apk_inspector import ApkInspectionError, inspect_apk
 from config import Settings, load_settings
 
 LOGGER = logging.getLogger("apk_telegram_bot")
+BOT_TOKEN_PATTERN = re.compile(
+    r"(?<![A-Za-z0-9_-])\d{6,}:[A-Za-z0-9_-]{20,}(?![A-Za-z0-9_-])"
+)
+BOT_TOKEN_REDACTION = "<BOT_TOKEN_REDACTED>"
+
+
+class BotTokenRedactionFilter(logging.Filter):
+    """Prevent Telegram API tokens from appearing in log lines or tracebacks."""
+
+    @staticmethod
+    def _redact(text: str) -> str:
+        return BOT_TOKEN_PATTERN.sub(BOT_TOKEN_REDACTION, text)
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        record.msg = self._redact(record.getMessage())
+        record.args = ()
+        if record.exc_info:
+            exception_text = "".join(traceback.format_exception(*record.exc_info))
+            record.exc_text = self._redact(exception_text)
+            record.exc_info = None
+        elif record.exc_text:
+            record.exc_text = self._redact(record.exc_text)
+        if record.stack_info:
+            record.stack_info = self._redact(record.stack_info)
+        return True
+
+
 START_MESSAGE = (
     "Hi! I can create a read-only static metadata report for an Android APK.\n\n"
     "Send me an .apk file to receive package/version details, declared permissions, "
@@ -273,11 +302,20 @@ def build_application(settings: Settings) -> Application:
     return application
 
 
-def main() -> None:
+def configure_logging() -> None:
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
+    token_filter = BotTokenRedactionFilter()
+    for handler in logging.getLogger().handlers:
+        handler.addFilter(token_filter)
+    # httpx logs request URLs at INFO, and Telegram embeds the bot token in them.
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+
+
+def main() -> None:
+    configure_logging()
     try:
         settings = load_settings()
     except ValueError as exc:
@@ -290,7 +328,13 @@ def main() -> None:
         len(settings.allowed_user_ids),
     )
     application = build_application(settings)
-    application.run_polling(drop_pending_updates=True)
+    try:
+        application.run_polling(drop_pending_updates=True)
+    except InvalidToken:
+        LOGGER.error(
+            "Telegram rejected BOT_TOKEN. Replace it with a fresh token from @BotFather."
+        )
+        raise SystemExit(2) from None
 
 
 if __name__ == "__main__":
